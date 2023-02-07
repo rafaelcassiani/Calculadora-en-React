@@ -3,10 +3,11 @@ import './App.css'
 
 function App() {
   var [Pantalla1, setPantalla1] = useState(0)
-    var [pantalla2, setpantalla2] = useState(0)
-    var operador
-    var valor
-    //var [valor, setvalor] = useState(0)
+  var [pantalla2, setpantalla2] = useState(0)
+  var total
+  var [operador, setoperador] = useState(" ")
+  //var operador
+  var valor
 
     function Botones(props){
       if(props.boton == "1"){
@@ -31,41 +32,48 @@ function App() {
         var valor = '0'
       }
       return(
-            <button type="button" onClick={()=> setPantalla1(Pantalla1 + valor)}>{props.boton}</button>
+            <button  onClick={()=> setPantalla1(Pantalla1 + valor)}>{props.boton}</button>
       )
-      console.log(pantalla2)
     }
-    function Operaciones(props){
-      if(props.operacion == "mas"){
-        setpantalla2(Pantalla1)
-        operador = "suma"
-      }else if(props.operacion == "menos"){
-        setpantalla2(Pantalla1)
-        operador = "resta"
-      }else if(props.operacion == "multiplicar"){
-        setpantalla2(Pantalla1)
-        operador = "multiplicacion"
-      }else if(props.operacion == "dividir"){
-        setpantalla2(Pantalla1)
-        operador = "division"
-      }else if(props.operacion == "igual"){
-        if(operador=="suma"){
-          setPantalla1(parseInt(Pantalla1)+parseInt(pantalla2))
-        }else if(operador=="resta"){
-          setPantalla1(pantalla2-Pantalla1)
-        }else if(operador=="multiplicacion"){
-          setPantalla1(Pantalla1*pantalla2)
-        }else if(operador=="division"){
-          setPantalla1(Pantalla1/pantalla2)
-        }
-      }
+    function Eliminar(props){
       return(
         <>
-        <button type="button" onClick={()=> setpantalla2(Pantalla1)}>{props.operacion}</button>
+        <button onClick={()=> setPantalla1(0)+ setpantalla2(0)}>{props.eli}</button>
         </>
         
       )
-      
+    }
+    function Operaciones(props){
+      if(props.operacion == "+"){
+        operador = "+";
+      }else if(props.operacion == "-"){
+        operador = "-";
+      }else if(props.operacion == "*"){
+        operador = "*";
+      }else if(props.operacion == "/"){
+        operador = "/";
+      }
+      return(
+        <>
+        <button  onClick={()=> setpantalla2(Pantalla1)+setPantalla1(0)+console.log(operador)}>{props.operacion}</button>
+        </>
+      )      
+  }
+  function Igual(props){
+    if(operador == "+"){
+      total = parseInt(pantalla2)+parseInt(Pantalla1)
+    }else if(operador == "-"){
+      total = parseInt(pantalla2)-parseInt(Pantalla1)
+    }else if(operador == "*"){
+      total = parseInt(pantalla2)*parseInt(Pantalla1)
+    }else if(operador == "/"){
+      total = parseInt(pantalla2)/parseInt(Pantalla1)
+    }
+    return(
+      <>
+      <button  onClick={()=>setPantalla1(total)}>{props.operacion}</button>
+      </>
+    )
   }
     function Pantalla(props){
         return(
@@ -75,42 +83,6 @@ function App() {
           </>
             
         )
-    }
-    
-    
-    const mas=()=>{
-        pantalla2 = pantalla
-        
-        operador="suma"
-        pantalla=" "
-    }
-    const menos=()=>{
-        pantalla2 = pantalla
-        
-        operador="resta"
-        pantalla=" "
-    }
-    const multiplicacion=()=>{
-        pantalla2 = pantalla
-        
-        operador="multiplicacion"
-        pantalla=" "
-    }
-    const divicion=()=>{
-        pantalla2 = pantalla
-        operador="division"
-        pantalla=" "
-    }
-    const igual=()=>{
-        if(operador=="suma"){
-            setValor(pantalla+pantalla2)
-        }else if(operador=="resta"){
-            setValor(pantalla2-pantalla)
-        }else if(operador=="multiplicacion"){
-            setValor(pantalla*pantalla2)
-        }else if(operador=="division"){
-            setValor(pantalla/pantalla2)
-        }
     }
 
     return (
@@ -130,11 +102,9 @@ function App() {
              <Botones boton="3">{valor}</Botones>
              <Operaciones operacion="-" id="menos"></Operaciones><br />
              <Botones boton="0">{valor}</Botones>
-             <Botones boton=">"></Botones>
+             <Eliminar eli=">"></Eliminar>
              <Operaciones operacion="+" id="mas"></Operaciones>
-             <Operaciones operacion="=" id="igual"></Operaciones>
-             
-             
+             <Igual operacion="=" id="igual"></Igual>
         </>
     )
 }
