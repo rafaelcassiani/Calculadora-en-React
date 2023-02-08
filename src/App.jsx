@@ -5,7 +5,7 @@ function App() {
   var [Pantalla1, setPantalla1] = useState(0)
   var [pantalla2, setpantalla2] = useState(0)
   var total
-  var [operador, setoperador] = useState(" ")
+  var [operador, setoperador] = useState(0)
   //var operador
   var valor
 
@@ -44,18 +44,18 @@ function App() {
       )
     }
     function Operaciones(props){
-      if(props.operacion == "+"){
-        operador = "+";
-      }else if(props.operacion == "-"){
-        operador = "-";
-      }else if(props.operacion == "*"){
-        operador = "*";
-      }else if(props.operacion == "/"){
-        operador = "/";
-      }
+      // if(props.operacion == "+"){
+      //   setoperador(props.operacion);
+      // }else if(props.operacion == "-"){
+      //   setoperador(props.operacion);
+      // }else if(props.operacion == "*"){
+      //   setoperador("*");
+      // }else if(props.operacion == "/"){
+      //   setoperador(props.operacion);
+      // }
       return(
         <>
-        <button  onClick={()=> setpantalla2(Pantalla1)+setPantalla1(0)+console.log(operador)}>{props.operacion}</button>
+        <button  onClick={()=> setpantalla2(Pantalla1)+setPantalla1(0)+setoperador(props.operacion)}>{props.operacion}</button>
         </>
       )      
   }
@@ -78,7 +78,7 @@ function App() {
     function Pantalla(props){
         return(
           <>
-          <p>{pantalla2}</p>
+          <p >{pantalla2}</p>
           <p>{Pantalla1}</p>
           </>
             
@@ -92,18 +92,18 @@ function App() {
              <Botones boton="7">{valor}</Botones>
              <Botones boton="8">{valor}</Botones>
              <Botones boton="9">{valor}</Botones>
-             <Operaciones operacion="/" id="dividir"></Operaciones><br />
+             <Operaciones operacion="/" id="/"></Operaciones><br />
              <Botones boton="4">{valor}</Botones>
              <Botones boton="5">{valor}</Botones>
              <Botones boton="6">{valor}</Botones>
-             <Operaciones operacion="*" id="multiplicar"></Operaciones><br />
+             <Operaciones operacion="*" id="*"></Operaciones><br />
              <Botones boton="1">{valor}</Botones>
              <Botones boton="2">{valor}</Botones>
              <Botones boton="3">{valor}</Botones>
-             <Operaciones operacion="-" id="menos"></Operaciones><br />
+             <Operaciones operacion="-" id="-"></Operaciones><br />
              <Botones boton="0">{valor}</Botones>
              <Eliminar eli=">"></Eliminar>
-             <Operaciones operacion="+" id="mas"></Operaciones>
+             <Operaciones operacion="+" id="+"></Operaciones>
              <Igual operacion="=" id="igual"></Igual>
         </>
     )
