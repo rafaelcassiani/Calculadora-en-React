@@ -78,7 +78,7 @@ function App() {
     function Pantalla(props){
         return(
           <>
-          <p >{pantalla2}</p>
+          {/* <p >{pantalla2}</p> */}
           <p>{Pantalla1}</p>
           </>
             
